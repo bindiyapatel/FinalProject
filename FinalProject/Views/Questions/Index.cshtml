@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FinalProject.Models.Question>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Question List</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.QuizCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OptionA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OptionB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Optionc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OptionD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorrectAnswer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Optionc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrectAnswer)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.QuestionId" class="btn-success">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.QuestionId" class="btn-primary">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.QuestionId" class="btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

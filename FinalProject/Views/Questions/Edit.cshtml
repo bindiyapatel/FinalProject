@@ -1,0 +1,69 @@
+﻿@model FinalProject.Models.Question
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Question</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="QuizCode" class="control-label"></label>
+                @Html.DropDownListFor(model => model.QuizCode, (IEnumerable<SelectListItem>)ViewBag.Quizs, " Select Quiz", new { @class = "form-control" })
+                <span asp-validation-for="QuizCode" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="QuestionId" />
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <input asp-for="Content" class="form-control" />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OptionA" class="control-label"></label>
+                <input asp-for="OptionA" class="form-control" />
+                <span asp-validation-for="OptionA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OptionB" class="control-label"></label>
+                <input asp-for="OptionB" class="form-control" />
+                <span asp-validation-for="OptionB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Optionc" class="control-label"></label>
+                <input asp-for="Optionc" class="form-control" />
+                <span asp-validation-for="Optionc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OptionD" class="control-label"></label>
+                <input asp-for="OptionD" class="form-control" />
+                <span asp-validation-for="OptionD" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorrectAnswer" class="control-label"></label>
+                @Html.DropDownListFor(model => model.CorrectAnswer, new[] {
+                new SelectListItem() {Text = "A", Value = "A"},
+                new SelectListItem() {Text = "B", Value = "B"},
+                new SelectListItem() {Text = "C", Value = "C"},
+                new SelectListItem() {Text = "D", Value = "D"}
+            }, "Select", new { @class = "form-control" })
+                <span asp-validation-for="CorrectAnswer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
