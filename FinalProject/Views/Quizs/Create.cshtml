@@ -1,0 +1,50 @@
+﻿@model FinalProject.Models.Quiz
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Quiz</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="QuizTitle" class="control-label"></label>
+                <input asp-for="QuizTitle" class="form-control" />
+                <span asp-validation-for="QuizTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subject" class="control-label"></label>
+                @Html.DropDownListFor(model => model.Subject, (IEnumerable<SelectListItem>)ViewBag.Subjects, " Select subject", new { @class = "form-control" })
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuizCode" class="control-label"></label>
+                <input asp-for="QuizCode" class="form-control" />
+                <span asp-validation-for="QuizCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsDelete" class="control-label"></label>
+                @Html.DropDownListFor(model => model.IsDelete, new[] {
+                  new SelectListItem() {Text = "Yes", Value = "1"},
+                  new SelectListItem() {Text = "No", Value = "0"}
+              }, "Select", new { @class = "form-control" })      <span asp-validation-for="IsDelete" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<FinalProject.Models.Quiz>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>List Of Quizs</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.QuizTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuizCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDelete)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizCode)
+            </td>
+            <td>
+                @{
+                    if (item.IsDelete == "1")
+                    {
+                        <span class="text-danger">Deleted</span>
+                    }
+                    else
+                    {
+                        <span class="text-success">Not Deleted</span>
+                    }
+                }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.QuizId" class="btn-success">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.QuizId" class="btn-primary">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.QuizId" class="btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
